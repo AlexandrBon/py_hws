@@ -1,0 +1,58 @@
+$ ls
+atrifacts.txt  f.txt  tail.py
+
+$ python3 tail.py
+1
+2
+3
+^C
+
+$ cat f.txt | python3 tail.py 
+j
+k
+l
+z
+x
+c
+v
+b
+n
+m
+
+$ python3 tail.py f.txt t.txt
+==> f.txt <==
+j
+k
+l
+z
+x
+c
+v
+b
+n
+m
+tail: cannot open 't.txt' for reading: No such file or directory
+
+$ python3 tail.py f.txt t.txt
+==> f.txt <==
+j
+k
+l
+z
+x
+c
+v
+b
+n
+m
+==> f.txt <==
+j
+k
+l
+z
+x
+c
+v
+b
+n
+m

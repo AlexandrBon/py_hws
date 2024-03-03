@@ -1,0 +1,19 @@
+$ ls
+artifacts.txt  f.txt  wc.py
+
+$ python3 wc.py t.txt
+wc: t.txt: No such file or directory
+
+$ python3 wc.py f.txt
+16      19      75      f.txt
+16      19      75      total
+
+$ python3 wc.py f.txt f.txt 
+16      19      75      f.txt
+16      19      75      f.txt
+32      38      150     total
+
+$ python3 wc.py f.txt t.txt
+16      19      75      f.txt
+wc: t.txt: No such file or directory
+16      19      75      total

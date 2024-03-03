@@ -1,0 +1,85 @@
+$ ls
+artifacts.txt  f.txt  nl.py
+
+$ cat f.txt | python3 nl.py 
+     1  a
+     2  s
+     3  d
+     4  f
+     5  g
+     6  h
+     7  j
+     8  k
+     9  l
+    10  z
+    11  x
+    12  c
+    13  v
+    14  b
+    15  n
+    16  m
+
+$ python3 nl.py f.txt 
+     1  a
+     2  s
+     3  d
+     4  f
+     5  g
+     6  h
+     7  j
+     8  k
+     9  l
+    10  z
+    11  x
+    12  c
+    13  v
+    14  b
+    15  n
+    16  m
+
+$ python3 nl.py f.txt f.txt 
+     1  a
+     2  s
+     3  d
+     4  f
+     5  g
+     6  h
+     7  j
+     8  k
+     9  l
+    10  z
+    11  x
+    12  c
+    13  v
+    14  b
+    15  n
+    16  m
+    17  a
+    18  s
+    19  d
+    20  f
+    21  g
+    22  h
+    23  j
+    24  k
+    25  l
+    26  z
+    27  x
+    28  c
+    29  v
+    30  b
+    31  n
+    32  m
+
+$ python3 nl.py t.txt
+Error: File not found: t.txt
+
+$ python3 nl.py 
+a
+     1  a
+g
+     2  g
+b
+     3  b
+^C
+ 
