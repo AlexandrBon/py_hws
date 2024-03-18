@@ -1,12 +1,14 @@
-from latex_gen import generate_latex_table
+import latex_gen as tex
 
 
 def main():
-    print(generate_latex_table([
+    print(tex.generate_latex_table([
         [1, 2, 3],
         ["a", "b", "c"],
         [4, 5, 6],
     ]))
+
+    print(tex.generate_latex_image("image"))
 
 
 if __name__ == "__main__":
