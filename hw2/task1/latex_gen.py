@@ -1,12 +1,10 @@
 import typing as tp
 
 def generate_latex_document(latex_code: str):
-    return """
-\\documentclass{{article}}
-\\begin{{document}}
-{latex_code}
-\\end{document}
-""".format(latex_code=latex_code)
+    return """\\documentclass{article}
+\\begin{document}
+""" + latex_code +\
+"\\end{document}"
 
 
 def generate_latex_table(data: tp.List[tp.List[str]]):
@@ -24,4 +22,4 @@ def generate_latex_table(data: tp.List[tp.List[str]]):
 
 
 def generate_latex_image(image_path: str):
-    return "\\includegraphics{" + image_path + "}"
+    return "\\includegraphics{" + image_path + "}\n"
