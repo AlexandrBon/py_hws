@@ -8,7 +8,7 @@ def main():
                 ["a", "b", "c"],
                 [4, 5, 6],
             ]),
-            tex.generate_latex_image("artifacts/extra/image.png")
+            tex.generate_latex_image("task2/artifacts/extra/image.png")
         ]))
     )
                                 
