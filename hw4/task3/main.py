@@ -1,17 +1,34 @@
 import multiprocessing as mp
+from threading import Thread
 import codecs
 import time
+import queue
 
+
+SEND_THRESHOLD_SECONDS = 5.0
 
 def process_a_func(rqueue: mp.Queue, squeue: mp.Queue):
+    last_send = time.time() - SEND_THRESHOLD_SECONDS
+    messages = []
+
     while True:
-        squeue.put(str(rqueue.get()).lower())
-        time.sleep(5)
+        try:
+            message = rqueue.get(block=False)
+            messages.append(str(message).lower())
+        except queue.Empty:
+            pass
+
+        now = time.time()
+        if len(messages) != 0 and now - last_send > SEND_THRESHOLD_SECONDS:
+            squeue.put(messages.pop(0))
+            last_send = now
 
 
 def process_b_func(rqueue: mp.Queue, squeue: mp.Queue):
     while True:
-        squeue.put(codecs.encode(str(rqueue.get()), "rot_13"))
+        encoded_message = codecs.encode(str(rqueue.get()), "rot_13")
+        print(time.strftime('%X'), ": ", encoded_message)
+        squeue.put(encoded_message)
 
 
 def main():
@@ -28,9 +45,6 @@ def main():
     while True:
         message = input()
         ma_queue.put(message)
-
-        recieved = bm_queue.get()
-        print(time.strftime('%X'), ": ", recieved)
 
 
 if __name__ == "__main__":

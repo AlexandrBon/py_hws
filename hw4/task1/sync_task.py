@@ -1,4 +1,3 @@
-from multiprocessing import Process
 import time
 from fib import fib
 
@@ -6,12 +5,10 @@ from fib import fib
 def main():
     FIB_NUM = 35
 
-    tasks = [Process(target=fib, args=(FIB_NUM, )) for _ in range(10)]
-
     start_time = time.time()
-
-    [task.start() for task in tasks]
-    [task.join() for task in tasks]
+    
+    for _ in range(10):
+        fib(FIB_NUM)
 
     end_time = time.time()
     print(end_time - start_time)

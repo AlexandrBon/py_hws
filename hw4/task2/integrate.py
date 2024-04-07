@@ -11,15 +11,15 @@ def integrate(f, a, b, n_iter):
     return acc
 
 
-def integrate_threading(f, a, b, n_jobs=1, n_iter=10_000_000, executor=ThreadPoolExecutor):
+def integrate_parallel(f, a, b, n_jobs=1, n_iter=10_000_000, executor=ThreadPoolExecutor):
     n_iter_per_partition = ceil(n_iter / n_jobs)
     partition_len = (b - a) / n_jobs
     tasks = []
-    for i in range(n_jobs):
-        with executor(max_workers=n_jobs) as executor0:
+
+    with executor(max_workers=n_jobs) as executor0:
+        for i in range(n_jobs):
             new_a = a + i * partition_len
             new_b = new_a + partition_len
             tasks.append(executor0.submit(integrate, f, new_a, new_b, n_iter_per_partition))
-        
 
-    return sum([task.result() for task in tasks])
+        return sum([task.result() for task in tasks])
